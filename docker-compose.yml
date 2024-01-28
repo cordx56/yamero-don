@@ -131,3 +131,7 @@ networks:
   external_network:
   internal_network:
     internal: true
+volumes:
+  redis:
+  elasticsearch:
+  public-sysmtem:
