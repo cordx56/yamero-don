@@ -19,8 +19,8 @@ services:
     networks:
       - external_network
     volumes:
-      - ./cloudflared:/cloudflared
-    command: tunnel --config /cloudflared/config.yml run yamero-don
+      - ./cloudflared:/etc/cloudflared
+    command: tunnel --config /etc/cloudflared/config.yml run yamero-don
 
   redis:
     restart: always
