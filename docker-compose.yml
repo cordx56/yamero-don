@@ -13,6 +13,15 @@ services:
   #  environment:
   #    - 'POSTGRES_HOST_AUTH_METHOD=trust'
 
+  cloudflared:
+    restart: always
+    image: cloudflare/cloudflared:2024.1.5
+    networks:
+      - external_network
+    volumes:
+      - ./cloudflared:/cloudflared
+    command: tunnel --config /cloudflared/config.yml run yamero-don
+
   redis:
     restart: always
     image: redis:7-alpine
