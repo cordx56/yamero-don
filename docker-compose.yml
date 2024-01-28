@@ -1,17 +1,17 @@
 version: '3'
 services:
-  db:
-    restart: always
-    image: postgres:14-alpine
-    shm_size: 256mb
-    networks:
-      - internal_network
-    healthcheck:
-      test: ['CMD', 'pg_isready', '-U', 'postgres']
-    volumes:
-      - ./postgres14:/var/lib/postgresql/data
-    environment:
-      - 'POSTGRES_HOST_AUTH_METHOD=trust'
+  #db:
+  #  restart: always
+  #  image: postgres:14-alpine
+  #  shm_size: 256mb
+  #  networks:
+  #    - internal_network
+  #  healthcheck:
+  #    test: ['CMD', 'pg_isready', '-U', 'postgres']
+  #  volumes:
+  #    - ./postgres14:/var/lib/postgresql/data
+  #  environment:
+  #    - 'POSTGRES_HOST_AUTH_METHOD=trust'
 
   redis:
     restart: always
@@ -67,9 +67,9 @@ services:
       # prettier-ignore
       test: ['CMD-SHELL', 'wget -q --spider --proxy=off localhost:3000/health || exit 1']
     ports:
-      - '127.0.0.1:3000:3000'
+      - '3000:3000'
     depends_on:
-      - db
+      #- db
       - redis
       # - es
     volumes:
@@ -88,9 +88,9 @@ services:
       # prettier-ignore
       test: ['CMD-SHELL', 'wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1']
     ports:
-      - '127.0.0.1:4000:4000'
+      - '4000:4000'
     depends_on:
-      - db
+      #- db
       - redis
 
   sidekiq:
